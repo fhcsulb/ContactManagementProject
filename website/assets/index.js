@@ -19,6 +19,8 @@ $(document).ready( function () {
 
 
     $('#myForm').submit( function(event) {
+
+
         const formData = {
             fullname: $('#fullname').val(),
             phonenum: $('#phonenum').val(),
@@ -27,7 +29,7 @@ $(document).ready( function () {
 
         const requestData = JSON.stringify(formData)
         console.log(requestData);
-
+        if(isPhoneValid && isNameValid && isEmailValid){
         $.ajax({
             type: 'POST', 
             url: 'api', 
@@ -37,7 +39,7 @@ $(document).ready( function () {
         })
         .done(successHandler())
         .fail(errorHandler())
-
+    }
         event.preventDefault();
     })
    
