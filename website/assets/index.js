@@ -29,6 +29,7 @@ $(document).ready( function () {
 
         const requestData = JSON.stringify(formData)
         console.log(requestData);
+        
         if(isPhoneValid && isNameValid && isEmailValid){
         $.ajax({
             type: 'POST', 
