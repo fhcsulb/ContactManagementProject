@@ -3,7 +3,7 @@ const api = express.Router();
 
 let contactID = 1;
 
-api.post('/user', (req, res) => {
+api.post('/', (req, res) => {
     const contact = req.body;
     console.log(contact);
 
@@ -12,6 +12,10 @@ api.post('/user', (req, res) => {
         id: contactID++,
 
     }
+    res.json(newContact);
+
+    // write to a file here? 
+
 })
 
 module.exports = api;

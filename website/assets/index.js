@@ -28,16 +28,36 @@ $(document).ready( function () {
         const requestData = JSON.stringify(formData)
         console.log(requestData);
 
+        $.ajax({
+            type: 'POST', 
+            url: 'api', 
+            data: requestData,
+            dataType: 'json',
+            contentType: 'application/json',
+        })
+        .done(successHandler())
+        .fail(errorHandler())
+
         event.preventDefault();
     })
    
 
+
     
 });
 
-    var isPhoneValid;
-    var isNameValid;
-    var isEmailValid;
+function successHandler(data) {
+    const serverData = JSON.stringify(data)
+    $('#output').text(`Server response: ${serverData}`)
+}
+
+function errorHandler(jqXHR, textStatus, error) {
+    $('#output').val("textStatus: " + textStatus + ". server error: " + error)
+}
+
+var isPhoneValid;
+var isNameValid;
+var isEmailValid;
 function nameValidate() {
 
     document.getElementById("fullname").addEventListener("blur" , e=> {

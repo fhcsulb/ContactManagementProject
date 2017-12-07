@@ -16,6 +16,9 @@ app.set("views",path.resolve(__dirname,"website"));
 const assetsPath = path.resolve(__dirname,"website/assets");
 app.use(express.static(assetsPath));
 
+// ! important: to parse request JSON as req.body
+app.use(bodyParser.json({ type: 'application/json' }))
+
 app.get('/', (req,res)=> {
     res.render('index')
 })
