@@ -47,6 +47,10 @@ $(document).ready( function () {
         .fail(errorHandler())
     }
         event.preventDefault();
+
+        showDetails();
+        $('#details').show();
+        $('#new-contact').hide();
     })
 
 
@@ -175,67 +179,8 @@ function emailValidate() {
             $("#input-email").text(email);
             $("#input-phone").text(phonenumber);
            
-            createObject(name, email, phonenumber);
-
-        }
-
-        /*
-        function createObject (objectName, objectEmail, objectPhonenumber) {
-            var Person = {
-                            'name': objectName, 
-                            'email': objectEmail, 
-                            'phone': objectPhonenumber
-            }
-
-            console.log(JSON.stringify(Person));
-
             
+
         }
-        */
 
-
-
-
-
-
-        /**
-         * 
-         *  const fs = require('fs')
-         * 
-         * 
-         * const myData = [
-         *  {name: 'alice', age: 25},
-         *  {name: 'bob', age: 37},
-         * 
-         *  ]
-         * 
-         * const data = JSON.stringify(myData)
-         * fs.writefile('./t01.json', data, (err,res) =>
-         *      if(err) {
-         *          console.log(`error ${err}`)
-         *      }
-         * 
-         *      else {
-         *          console.log(`Succeeded with res:${res}` )    
-         *      }
-         * 
-         *  )
-         * 
-         * 
-         * 
-         *   // how to read from a file
-         *  fs.readFile('t01.json', (err,data) => {
-         *  if(err) {
-         *      console.log(`error ${err}`)
-         *  }
-         * 
-         *    else {
-         *          const res = JSON.parse(data);    
-         *      }
-         * 
-         * 
-         * } 
-         * 
-         * 
-         */
-    
+        
