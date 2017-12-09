@@ -30,7 +30,7 @@ fs.readFile('data.json', function(err,data){
 
 api.get('/', (req,res) => {
     console.log("2. Here");
-    res.setHeader('content-type','text/javascript');
+    res.setHeader('content-type','application/javascript');
     fs.readFile('data.json', function(err,data) {
     
         res.send(data);

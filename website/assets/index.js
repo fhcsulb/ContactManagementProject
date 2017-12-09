@@ -12,8 +12,22 @@ $(document).ready( function () {
 
         console.log("here 1");
         $.get('api', function (data, status){
-        
-         alert(data) } );
+            
+            $('tbody').children().remove();
+            var json = JSON.parse(data);
+            
+            var tr;
+            for(var i = 0; i < json.table.length; i++) {
+                tr = $('<tr/>');
+                tr.append("<td>"+json.table[i].id+"</td");
+                tr.append("<td>"+json.table[i].name+"</td");
+                tr.append("<td>"+json.table[i].email+"</td");
+                tr.append("<td>"+json.table[i].phonenum+"</td");
+                $('table').append(tr);
+            }
+
+
+         } );
     })
 
     $('#new').click( function () {
