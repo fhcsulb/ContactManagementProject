@@ -9,6 +9,11 @@ $(document).ready( function () {
         $('#contact-list').show();
         $('#new-contact').hide();
         $('#details').hide();
+
+        console.log("here 1");
+        $.get('api', function (data, status){
+        
+         alert(data) } );
     })
 
     $('#new').click( function () {
@@ -43,6 +48,8 @@ $(document).ready( function () {
     }
         event.preventDefault();
     })
+
+
    
 
 
