@@ -1,5 +1,3 @@
-
-
 $(document).ready( function () {
     $('#contact-list').show();
     $('#new-contact').hide();

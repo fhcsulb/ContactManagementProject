@@ -3,6 +3,9 @@ const path = require('path');
 const bodyParser = require('body-parser');
  const apiRouter = require('./api');
 
+const DEFAULT_PORT = 8080;
+const port = process.env.PORT || DEFAULT_PORT;
+
 
 const app = express();
 
@@ -11,6 +14,8 @@ const app = express();
 
 app.set("views",path.resolve(__dirname,"website"));
 
+// Serve up content from public directory
+app.use(express.static(__dirname + '/website'));
 
 // path to client side Javascript
 const assetsPath = path.resolve(__dirname,"website/assets");
@@ -25,5 +30,5 @@ app.get('/', (req,res)=> {
 
  app.use('/api',apiRouter);
 
-app.listen(8080);
+app.listen(port);
 console.log('Listening on 8080:');
