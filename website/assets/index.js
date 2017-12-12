@@ -15,6 +15,14 @@ $(document).ready( function () {
             var json = JSON.parse(data);
             
             var tr;
+
+            tr = $('<tr/>');
+            tr.append("<th>"+"ID"+"</th>");
+            tr.append("<th>"+"Contact Name"+"</th>");
+            tr.append("<th>"+"Email"+"</th>");
+            tr.append("<th>"+"Phone Number"+"</th>");
+            $('table').append(tr);
+
             for(var i = 0; i < json.table.length; i++) {
                 tr = $('<tr/>');
                 tr.append("<td>"+json.table[i].id+"</td");
@@ -64,6 +72,11 @@ $(document).ready( function () {
         $('#details').show();
         $('#new-contact').hide();
     })
+
+   
+   
+
+    
 
 
    
