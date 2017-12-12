@@ -21,6 +21,7 @@ $(document).ready( function () {
             tr.append("<th>"+"Contact Name"+"</th>");
             tr.append("<th>"+"Email"+"</th>");
             tr.append("<th>"+"Phone Number"+"</th>");
+            tr.append("<th>"+"Actions"+"</th>");
             $('table').append(tr);
 
             for(var i = 0; i < json.table.length; i++) {
@@ -29,6 +30,7 @@ $(document).ready( function () {
                 tr.append("<td>"+json.table[i].name+"</td");
                 tr.append("<td>"+json.table[i].email+"</td");
                 tr.append("<td>"+json.table[i].phonenum+"</td");
+                tr.append("<td>"+"<button class=editbtn>"+"Edit"+"</button>"+"<button class=editbtn>"+"Delete"+"</button>"+ "</td>");
                 $('table').append(tr);
             }
 
