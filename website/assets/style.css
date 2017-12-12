@@ -100,3 +100,23 @@ p#input-name, p#input-email, p#input-phone {
     background-color: dodgerblue;
    
 }
+
+
+.editbtn {
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 5%;
+}
+
+.delbtn {
+    background-color: rgb(221, 0, 0); 
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}

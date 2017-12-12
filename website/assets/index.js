@@ -30,7 +30,7 @@ $(document).ready( function () {
                 tr.append("<td>"+json.table[i].name+"</td");
                 tr.append("<td>"+json.table[i].email+"</td");
                 tr.append("<td>"+json.table[i].phonenum+"</td");
-                tr.append("<td>"+"<button class=editbtn>"+"Edit"+"</button>"+"<button class=editbtn>"+"Delete"+"</button>"+ "</td>");
+                tr.append("<td>"+"<button class=editbtn>"+"Edit"+"</button>"+"<button class=delbtn>"+"Delete"+"</button>"+ "</td>");
                 $('table').append(tr);
             }
 
