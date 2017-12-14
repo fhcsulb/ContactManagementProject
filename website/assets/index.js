@@ -30,10 +30,10 @@ $(document).ready( function () {
                 tr.append("<td>"+json.table[i].name+"</td");
                 tr.append("<td>"+json.table[i].email+"</td");
                 tr.append("<td>"+json.table[i].phonenum+"</td");
-                tr.append("<td>"+"<button class=editbtn>"+"Edit"+"</button>"+"<button class=delbtn>"+"Delete"+"</button>"+ "</td>");
+                tr.append("<td>"+"<button class=editbtn>"+"Edit"+"</button>"+"<button class=delbtn onclick = deleteRow(this)>"+"Delete"+"</button>"+ "</td>");
                 $('table').append(tr);
             }
-
+// https://stackoverflow.com/questions/14400609/remove-json-entry-by-value   for the delete button, check out the 2nd thread in here. 
 
          } );
     })
@@ -76,9 +76,6 @@ $(document).ready( function () {
     })
 
    
-   
-
-    
 
 
    
@@ -209,5 +206,32 @@ function emailValidate() {
             
 
         }
+
+        
+
+        function deleteRow(btn) {
+         var row = btn.parentNode.parentNode.rowIndex;
+        // console.log(row);
+           // row.parentNode.removeChild(row);
+
+           const remove = {index: row};
+           var removeJSON = JSON.stringify(remove);
+           
+           $.ajax({
+                    type: 'DELETE',
+                    url: 'api',
+                    data: removeJSON,
+                    dataType: 'json',
+                    contentType: 'application/json',
+                })
+                .done(successHandler)
+                .fail(errorHandler)
+
+
+                $('#index').click();
+
+        }
+
+        
 
         

@@ -27,9 +27,20 @@ fs.readFile('data.json', function(err,data){
 
 */
 
+api.delete('/',(req,res) => {
+        console.log(req.body.index);
+        var data = fs.readFileSync('data.json')    
+        var json = JSON.parse(data);
+        console.log(json);
+
+        var contacts = json.table;
+
+       json.table.splice(req.body.index - 1,1);
+        fs.writeFileSync('data.json', JSON.stringify(json));
+        res.send();
+})
 
 api.get('/', (req,res) => {
-    console.log("2. Here");
     res.setHeader('content-type','application/javascript');
     fs.readFile('data.json', function(err,data) {
     
