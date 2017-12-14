@@ -73,14 +73,9 @@ $(document).ready( function () {
         $('#new-contact').hide();
     })
 
-   
-
-
-   
-
-
-    
 });
+
+
 
 function successHandler(data) {
     const serverData = JSON.stringify(data)
@@ -121,6 +116,7 @@ function nameValidate() {
     })
     
 }
+
 
 function emailValidate() {
 
@@ -228,6 +224,10 @@ function emailValidate() {
 
                 $('#index').click();
 
+        }
+
+        function showContacts() {
+            $('#index').click();
         }
 
         
