@@ -63,7 +63,7 @@ api.post('/', (req, res) => {
 
 
     const newContact = {
-        id: 0,
+       
         name: req.body.fullname,
         email: req.body.email,
         phonenum: req.body.phonenum
@@ -86,16 +86,10 @@ api.post('/', (req, res) => {
             if (!isEmpty(data)&& data !== null) {
                 temp = JSON.parse(data);
                 var tempJSON = JSON.stringify(temp);
-                console.log("4."+temp.table);
-                console.log("2. last id is "+temp.table[temp.table.length-1].id);
-                newContact.id = Number((temp.table[temp.table.length-1].id) ) + 1;
+
+                
                 
             } 
-
-            else {
-                console.log("3. contactID = 1");
-                newContact.id= 1;
-            }
 
 
 
