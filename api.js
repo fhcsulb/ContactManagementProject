@@ -3,29 +3,6 @@ const api = express.Router();
 
 const fs = require('fs');
 
-/*
-filePath = __dirname+'/data.json';
-var object = {table:[]};
-
-fs.readFile('data.json', function(err,data){
-    if(err) {
-        console.log(err);
-    }  else {
-
-        if (!isEmpty(data)&& data !== null) {
-            object = JSON.parse(data);
-            console.log(object[object.table.length-1]);
-           //contactID = object[object.lenth-1].id+1;
-        }  else {
-            contactID = 1;
-        }
-        
-
-    }
-
-});
-
-*/
 
 api.delete('/',(req,res) => {
         console.log(req.body.index);
