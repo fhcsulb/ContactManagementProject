@@ -267,14 +267,20 @@ function emailValidate() {
             var row = btn.parentNode.parentNode.rowIndex;
             let json;
 
+            // perform an HTTP GET to retrieve all the data in the JSON file
             $.get('api', function (data, status){
                  json = JSON.parse(data);
                 
+                 // write the data to be edited to the Edit Contact view
                 $ ('#edit-fullname').val(json.table[row-1].name);
                 $ ('#edit-email').val(json.table[row-1].email);
                 $ ('#edit-phonenum').val(json.table[row-1].phonenum);
 
+
+                // after the user has updated information and they click to save, run this function
                 $('#edit-submit').click(function(){
+
+                    // create an object from the newly updated information. 
                     const formData = {
                         fullname: $('#edit-fullname').val(),
                         email: $('#edit-email').val(),
@@ -284,6 +290,7 @@ function emailValidate() {
 
                     const requestData = JSON.stringify(formData);
                     
+                    // perform an HTTP PUT request to update the JSON file.
                     $.ajax({
                         type: 'PUT', 
                         url: 'api', 
@@ -294,9 +301,9 @@ function emailValidate() {
                     .done(successHandler())
                     .fail(errorHandler())
 
+                    // after the JSON file has been updated, display the contacts page. 
                     showContacts();
 
-        
                 })
             }
         
