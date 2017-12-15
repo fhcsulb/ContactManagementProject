@@ -1,23 +1,28 @@
 $(document).ready( function () {
+
+    // when user first loads site, only display the contact list
     $('#contact-list').show();
     $('#new-contact').hide();
     $('#details').hide();
     $('#edit-contact').hide();
     
+    // when index is clicked, display the view of the contact list and hide other views
     $('#index').click( function () {
         $('#contact-list').show();
         $('#new-contact').hide();
         $('#details').hide();
         $('#edit-contact').hide();
 
-        
+        // retrieve contacts from the JSON file through HTTP GET
         $.get('api', function (data, status){
             
+            // clears the existing HTML table
             $('tbody').children().remove();
             var json = JSON.parse(data);
             
             var tr;
 
+            // specify table headers
             tr = $('<tr/>');
             tr.append("<th>"+"Contact Name"+"</th>");
             tr.append("<th>"+"Email"+"</th>");
@@ -25,6 +30,7 @@ $(document).ready( function () {
             tr.append("<th>"+"Actions"+"</th>");
             $('table').append(tr);
 
+            // retrieve data from the JSON file and append it to the table
             for(var i = 0; i < json.table.length; i++) {
                 tr = $('<tr/>');
                 tr.append("<td>"+json.table[i].name+"</td");
@@ -38,6 +44,7 @@ $(document).ready( function () {
          } );
     })
 
+    // when new is clicked, display the view allowing the user to enter in details for a new contact
     $('#new').click( function () {
         $('#new-contact').show();
         $('#contact-list').hide();
@@ -45,10 +52,10 @@ $(document).ready( function () {
         $('#edit-contact').hide();
     })
 
-
+    // the user submits the new contact form
     $('#myForm').submit( function(event) {
 
-
+        // create an object from the form data that was submitted.
         const formData = {
             fullname: $('#fullname').val(),
             phonenum: $('#phonenum').val(),
@@ -56,8 +63,8 @@ $(document).ready( function () {
         };
 
         const requestData = JSON.stringify(formData)
-        console.log(requestData);
         
+        // if a valid phone number, email, and phone are valid, perform HTTP POST to save to JSON. 
         if(isPhoneValid && isNameValid && isEmailValid){
         $.ajax({
             type: 'POST', 
@@ -71,11 +78,13 @@ $(document).ready( function () {
     }
         event.preventDefault();
 
+        // after the POST, show the details page
         showDetails();
         $('#details').show();
         $('#new-contact').hide();
         $('#edit-contact').hide();
 
+        // clear old input on the form 
         document.getElementById('myForm').reset();
     })
 
@@ -92,9 +101,12 @@ function errorHandler(jqXHR, textStatus, error) {
     $('#output').val("textStatus: " + textStatus + ". server error: " + error)
 }
 
+// variables to ensure phone, name, and email are valid. 
 var isPhoneValid;
 var isNameValid;
 var isEmailValid;
+
+// function to validate the name validity
 function nameValidate() {
 
     document.getElementById("fullname").addEventListener("blur" , e=> {
@@ -122,7 +134,7 @@ function nameValidate() {
     
 }
 
-
+// function to validate email validity
 function emailValidate() {
 
             document.getElementById("email").addEventListener("blur" , e=> {
@@ -150,6 +162,7 @@ function emailValidate() {
 
         }
     
+        // function to validate the phone number
         function phoneValidate() {
             document.getElementById("phonenum").addEventListener("blur" , e=> {
                 // Match a string of the form xxx@yyy.zzz 
@@ -191,6 +204,8 @@ function emailValidate() {
 
         }
 
+
+        // function that retrieves the information that will display on the details page
         function showDetails () {
 
             // retrieve the contents of the user input from the input fields
@@ -208,15 +223,17 @@ function emailValidate() {
         }
 
         
-
+        // function for deleting a row in the table
         function deleteRow(btn) {
+        
+        // determine which row to delete based off the button
          var row = btn.parentNode.parentNode.rowIndex;
-        // console.log(row);
-           // row.parentNode.removeChild(row);
 
+            // store the row to delete in an object
            const remove = {index: row};
            var removeJSON = JSON.stringify(remove);
            
+           // perform an HTTP DELETE request
            $.ajax({
                     type: 'DELETE',
                     url: 'api',
@@ -227,21 +244,26 @@ function emailValidate() {
                 .done(successHandler)
                 .fail(errorHandler)
 
-
+                // once the delete show has performed, simulate click on index button which 
+                // will show the contacts page
                 $('#index').click();
 
         }
 
+        // function to simulate a click on the index button which will show the contacts page
         function showContacts() {
             $('#index').click();
         }
 
+
+        // function for changing the data on a row in the table
         function editRow(btn) {
             $('#edit-contact').show();
             $('#contact-list').hide();
             $('#new-contact').hide();
             $('#details').hide();
           
+            // determine the row to be changed based off the button
             var row = btn.parentNode.parentNode.rowIndex;
             let json;
 
