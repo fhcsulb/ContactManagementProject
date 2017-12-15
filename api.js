@@ -91,6 +91,25 @@ api.post('/', (req, res) => {
 
 });
 
+api.put('/',(req,res) => {
+    const contact = req.body;
+
+ 
+     var data = fs.readFileSync('data.json')    
+     var json = JSON.parse(data);
+
+     json.table[req.body.index - 1].name = req.body.fullname;
+     json.table[req.body.index - 1].email = req.body.email;
+     json.table[req.body.index - 1].phonenum = req.body.phonenum;
+
+     var obj = JSON.stringify(json)
+
+     fs.writeFile('data.json',obj);
+     
+
+     res.send();
+})
+
 
 
 

@@ -250,10 +250,41 @@ function emailValidate() {
                 $ ('#edit-fullname').val(json.table[row-1].name);
                 $ ('#edit-email').val(json.table[row-1].email);
                 $ ('#edit-phonenum').val(json.table[row-1].phonenum);
-            })
+
+                $('#edit-submit').click(function(){
+                    const formData = {
+                        fullname: $('#edit-fullname').val(),
+                        email: $('#edit-email').val(),
+                        phonenum: $('#edit-phonenum').val(),
+                        index: row
+                    };
+
+                    const requestData = JSON.stringify(formData);
+                    
+                    $.ajax({
+                        type: 'PUT', 
+                        url: 'api', 
+                        data: requestData,
+                        dataType: 'json',
+                        contentType: 'application/json',
+                    })
+                    .done(successHandler())
+                    .fail(errorHandler())
+
+                    showContacts();
+
+        
+                })
+            }
+        
+
+        )
             
 
         }
+
+
+        
 
         
 
