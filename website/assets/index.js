@@ -2,13 +2,15 @@ $(document).ready( function () {
     $('#contact-list').show();
     $('#new-contact').hide();
     $('#details').hide();
+    $('#edit-contact').hide();
     
     $('#index').click( function () {
         $('#contact-list').show();
         $('#new-contact').hide();
         $('#details').hide();
+        $('#edit-contact').hide();
 
-        console.log("here 1");
+        
         $.get('api', function (data, status){
             
             $('tbody').children().remove();
@@ -28,10 +30,10 @@ $(document).ready( function () {
                 tr.append("<td>"+json.table[i].name+"</td");
                 tr.append("<td>"+json.table[i].email+"</td");
                 tr.append("<td>"+json.table[i].phonenum+"</td");
-                tr.append("<td>"+"<button class=editbtn>"+"Edit"+"</button>"+"<button class=delbtn onclick = deleteRow(this)>"+"Delete"+"</button>"+ "</td>");
+                tr.append("<td>"+"<button class=editbtn onclick = editRow(this)>"+"Edit"+"</button>"+"<button class=delbtn onclick = deleteRow(this)>"+"Delete"+"</button>"+ "</td>");
                 $('table').append(tr);
             }
-// https://stackoverflow.com/questions/14400609/remove-json-entry-by-value   for the delete button, check out the 2nd thread in here. 
+
 
          } );
     })
@@ -40,6 +42,7 @@ $(document).ready( function () {
         $('#new-contact').show();
         $('#contact-list').hide();
         $('#details').hide();
+        $('#edit-contact').hide();
     })
 
 
@@ -71,6 +74,7 @@ $(document).ready( function () {
         showDetails();
         $('#details').show();
         $('#new-contact').hide();
+        $('#edit-contact').hide();
     })
 
 });
@@ -196,6 +200,7 @@ function emailValidate() {
             $("#input-name").text(name);
             $("#input-email").text(email);
             $("#input-phone").text(phonenumber);
+            $('#edit-contact').hide();
            
             
 
@@ -228,6 +233,26 @@ function emailValidate() {
 
         function showContacts() {
             $('#index').click();
+        }
+
+        function editRow(btn) {
+            $('#edit-contact').show();
+            $('#contact-list').hide();
+            $('#new-contact').hide();
+            $('#details').hide();
+          
+            var row = btn.parentNode.parentNode.rowIndex;
+            let json;
+
+            $.get('api', function (data, status){
+                 json = JSON.parse(data);
+                
+                $ ('#edit-fullname').val(json.table[row-1].name);
+                $ ('#edit-email').val(json.table[row-1].email);
+                $ ('#edit-phonenum').val(json.table[row-1].phonenum);
+            })
+            
+
         }
 
         

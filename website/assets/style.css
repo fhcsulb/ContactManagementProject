@@ -48,14 +48,14 @@ table tr,  table td{
     padding: 8px;
 }
 
-div#details, div#new-contact {
+div#details, div#new-contact, div#edit-contact {
     width: 60%;
     margin: auto;
     
     background-color: #f2f2f2;
 }
 
-div.details-container, div.contact-container {
+div.details-container, div.contact-container, div.edit-container {
     background-color: white;
     padding-top: 3%;
     padding-bottom: 3%;
