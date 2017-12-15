@@ -5,10 +5,10 @@ const fs = require('fs');
 
 
 api.delete('/',(req,res) => {
-        console.log(req.body.index);
+       
         var data = fs.readFileSync('data.json')    
         var json = JSON.parse(data);
-        console.log(json);
+       
 
         var contacts = json.table;
 
@@ -24,10 +24,6 @@ api.get('/', (req,res) => {
         res.send(data);
     })
 })
-
-// create a variable for the contact ID value.
-var contactID;
-
 
 
 api.post('/', (req, res) => {
@@ -46,7 +42,6 @@ api.post('/', (req, res) => {
         phonenum: req.body.phonenum
     }
 
-    console.log("1."+ JSON.stringify(newContact));
     
     filePath = __dirname+'/data.json';
       

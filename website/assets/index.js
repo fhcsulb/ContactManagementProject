@@ -75,6 +75,8 @@ $(document).ready( function () {
         $('#details').show();
         $('#new-contact').hide();
         $('#edit-contact').hide();
+
+        document.getElementById('myForm').reset();
     })
 
 });
@@ -110,11 +112,10 @@ function nameValidate() {
         // otherwise, return true
 
         if(validityMessage.length > 1) {
-            console.log("Name false");
             isNameValid =false;
             return false;
         }
-        console.log("Name true");
+
         isNameValid=true;
         return true;
     })
@@ -136,12 +137,12 @@ function emailValidate() {
                 document.getElementById("email-validate").textContent = validityMessage;
 
                 if(validityMessage.length > 1) {
-                    console.log("Email false");
+                   
                     isEmailValid= false;
                     return false;
                 }
         
-                console.log("Email: true");
+                
                 isEmailValid=true;
                 return true;
         
@@ -162,11 +163,11 @@ function emailValidate() {
                 document.getElementById("phone-validate").textContent = validityMessage;
 
                 if(validityMessage.length > 1) {
-                    console.log("Email: false");
+                    
                     isPhoneValid=false;
                     return false;
                 }
-                console.log("Phone: true");
+               
                 isPhoneValid=true;
                 return true;
             })
@@ -176,7 +177,7 @@ function emailValidate() {
         function submitValidate() {
             if( isEmailValid && isNameValid && isPhoneValid )  {
 
-                console.log("Successful");
+             
 
                 showDetails();
                 $('#details').show();
