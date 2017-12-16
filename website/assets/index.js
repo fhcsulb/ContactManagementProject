@@ -166,7 +166,7 @@ function emailValidate() {
         function phoneValidate() {
             document.getElementById("phonenum").addEventListener("blur" , e=> {
                 // Match a string of the form xxx@yyy.zzz 
-                const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im 
+                const phoneRegex = /^[\+]?[(]?[2-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im 
                 let validityMessage = ""; 
         
                 if(!phoneRegex.test(e.target.value)) {
